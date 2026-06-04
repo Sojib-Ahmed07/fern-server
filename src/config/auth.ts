@@ -36,7 +36,8 @@ export const auth = betterAuth({
     },
   },
 
-  trustedOrigins: ["http://localhost:5000", "http://localhost:3000"],
+  // 🔗 বিশ্বস্ত সোর্স হিসেবে ফ্রন্টঅ্যান্ড ইউআরএল
+  trustedOrigins: ["http://localhost:3000", "http://localhost:5000"],
 
   user: {
     additionalFields: {

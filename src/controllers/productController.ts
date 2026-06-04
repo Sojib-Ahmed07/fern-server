@@ -6,13 +6,43 @@ export const getAllProducts = async (
   res: Response,
 ): Promise<void> => {
   try {
-    const products = await prisma.product.findMany({
-      orderBy: { createdAt: "desc" },
-    });
+    const { page = 1, limit = 10, search, category } = req.query;
+
+    const pageNumber = parseInt(page as string);
+    const limitNumber = parseInt(limit as string);
+    const skip = (pageNumber - 1) * limitNumber;
+
+    const whereCondition: any = {};
+
+    if (search) {
+      whereCondition.OR = [
+        { name: { contains: search as string, mode: "insensitive" } },
+        { description: { contains: search as string, mode: "insensitive" } },
+      ];
+    }
+
+    if (category) {
+      whereCondition.category = category as string;
+    }
+
+    const [products, totalProducts] = await prisma.$transaction([
+      prisma.product.findMany({
+        where: whereCondition,
+        skip: skip,
+        take: limitNumber,
+        orderBy: { createdAt: "desc" },
+      }),
+      prisma.product.count({ where: whereCondition }),
+    ]);
 
     res.status(200).json({
       success: true,
-      count: products.length,
+      meta: {
+        totalProducts,
+        currentPage: pageNumber,
+        totalPages: Math.ceil(totalProducts / limitNumber),
+        limit: limitNumber,
+      },
       products,
     });
   } catch (error) {

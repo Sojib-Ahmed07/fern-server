@@ -93,10 +93,14 @@ model Order {
   userId      String
   user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
   totalAmount Float
-  status      OrderStatus
-  items       OrderItem[]
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
+  status      OrderStatus 
+  transactionId   String @unique
+  paymentStatus   String @default("UNPAID") 
+  shippingAddress String
+
+  items     OrderItem[]
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
 }
 
 model OrderItem {
