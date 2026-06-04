@@ -55,6 +55,7 @@ model Account {
   providerId            String
   accessToken           String?
   refreshToken          String?
+  idToken               String?
   accessTokenExpiresAt  DateTime?
   refreshTokenExpiresAt DateTime?
   scope                 String?
@@ -89,13 +90,13 @@ model Comment {
 }
 
 model Order {
-  id          String      @id @default(uuid())
-  userId      String
-  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
-  totalAmount Float
-  status      OrderStatus 
-  transactionId   String @unique
-  paymentStatus   String @default("UNPAID") 
+  id              String      @id @default(uuid())
+  userId          String
+  user            User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  totalAmount     Float
+  status          OrderStatus
+  transactionId   String      @unique
+  paymentStatus   String      @default("UNPAID")
   shippingAddress String
 
   items     OrderItem[]
@@ -111,4 +112,14 @@ model OrderItem {
   price     Float
   order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
   product   Product @relation(fields: [productId], references: [id])
+}
+
+model Verification {
+  id         String   @id @default(uuid())
+  token      String?  @unique
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 }

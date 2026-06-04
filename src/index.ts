@@ -6,6 +6,7 @@ import { toNodeHandler } from "better-auth/node";
 import productRoutes from "./routes/productRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
 import commentRoutes from "./routes/commentRoutes.js";
+import adminRoutes from "./routes/adminRoutes.js";
 
 dotenv.config();
 
@@ -41,6 +42,8 @@ app.use("/api/products", productRoutes);
 app.use("/api/orders", orderRoutes);
 //comments related
 app.use("/api/comments", commentRoutes);
+//admin
+app.use("/api/admin", adminRoutes)
 
 // server listener
 app.listen(PORT, () => {

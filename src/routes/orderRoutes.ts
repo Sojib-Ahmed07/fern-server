@@ -20,6 +20,7 @@ router.get("/:id", isAuthenticated, getOrderDetails);
 
 // 💳 SSLCommerz পাবলিক কলব্যাক রাউটস (এগুলোতে মিডলওয়্যার দেওয়া যাবে না)
 router.post("/payment/success/:tranId", handlePaymentSuccess);
+router.get("/payment/success/:tranId", handlePaymentSuccess);
 router.post("/payment/fail/:tranId", handlePaymentFail);
 router.post("/payment/cancel/:tranId", handlePaymentCancel);
 
