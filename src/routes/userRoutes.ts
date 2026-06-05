@@ -1,7 +1,11 @@
 import { Router } from "express";
-import { getAllUsers, updateUserRole, deleteUser } from "../controllers/userController.js";
+import {
+  getAllUsers,
+  updateUserRole,
+  deleteUser,
+} from "../controllers/userController.js";
 import { isAuthenticated } from "../middlewares/authMiddleware.js";
-import { isAdmin } from "@/middlewares/adminMiddleware.js";
+import { isAdmin } from "../middlewares/adminMiddleware.js"; // 🎯 ফিক্সড: @/ এর বদলে সঠিক রিলেটিভ পাথ দেওয়া হয়েছে
 
 const router = Router();
 
