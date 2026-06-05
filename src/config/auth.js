@@ -61,7 +61,7 @@
 //     },
 //   },
 //   // 🔗 বিশ্বস্ত সোর্স হিসেবে ফ্রন্টঅ্যান্ড ইউআরএল
-//   trustedOrigins: ["http://localhost:3000", "http://localhost:5000"],
+//   trustedOrigins: ["http://localhost:3000", "${process.env.BACKEND_URL}"],
 //   user: {
 //     additionalFields: {
 //       role: {
@@ -81,7 +81,7 @@ export const auth = betterAuth({
     }),
     // 🎯 ফিক্স ১: Better Auth-কে তার নিজস্ব রুট এপিআই পাথ চেনানোর জন্য baseURL আবশ্যিক
     // এটি না থাকলে Better Auth এক্সপ্রেসের পাঠানো সাব-পাথগুলোকে (যেমন /forget-password) চিনতে না পেরে ৪MD দেয়।
-    baseURL: "http://localhost:5000/api/auth",
+    baseURL: "${process.env.BACKEND_URL}/api/auth",
     emailAndPassword: {
         enabled: true,
         // 💡 সেইফ প্র্যাকটিস: রিসেটের সময় কোনো অটো সাইন-ইন ট্রিম হবে না
@@ -139,7 +139,7 @@ export const auth = betterAuth({
         },
     },
     // 🔗 বিশ্বস্ত সোর্স হিসেবে ফ্রন্টঅ্যান্ড ইউআরএল
-    trustedOrigins: ["http://localhost:3000", "http://localhost:5000"],
+    trustedOrigins: ["http://localhost:3000", "${process.env.BACKEND_URL}"],
     user: {
         additionalFields: {
             role: {

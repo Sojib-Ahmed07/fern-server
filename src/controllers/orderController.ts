@@ -102,7 +102,7 @@ export const createOrder = async (
     formData.append("currency", "BDT");
     formData.append("tran_id", tran_id);
 
-    const backendBase = process.env.BACKEND_URL || "http://localhost:5000";
+    const backendBase = process.env.BACKEND_URL || "${process.env.BACKEND_URL}";
     formData.append(
       "success_url",
       `${backendBase}/api/orders/payment/success/${tran_id}`,
