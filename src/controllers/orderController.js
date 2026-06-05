@@ -78,7 +78,7 @@ export const createOrder = async (req, res) => {
         formData.append("total_amount", totalAmount.toFixed(2));
         formData.append("currency", "BDT");
         formData.append("tran_id", tran_id);
-        const backendBase = process.env.BACKEND_URL || "${process.env.BACKEND_URL}";
+        const backendBase = process.env.BACKEND_URL || "http://localhost:5000";
         formData.append("success_url", `${backendBase}/api/orders/payment/success/${tran_id}`);
         formData.append("fail_url", `${backendBase}/api/orders/payment/fail/${tran_id}`);
         formData.append("cancel_url", `${backendBase}/api/orders/payment/cancel/${tran_id}`);

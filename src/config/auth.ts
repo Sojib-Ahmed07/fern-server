@@ -66,7 +66,7 @@
 //   },
 
 //   // 🔗 বিশ্বস্ত সোর্স হিসেবে ফ্রন্টঅ্যান্ড ইউআরএল
-//   trustedOrigins: ["http://localhost:3000", "${process.env.BACKEND_URL}"],
+//   trustedOrigins: ["http://localhost:3000", "http://localhost:5000"],
 
 //   user: {
 //     additionalFields: {
@@ -90,7 +90,7 @@ export const auth = betterAuth({
 
   // 🎯 ফিক্স ১: Better Auth-কে তার নিজস্ব রুট এপিআই পাথ চেনানোর জন্য baseURL আবশ্যিক
   // এটি না থাকলে Better Auth এক্সপ্রেসের পাঠানো সাব-পাথগুলোকে (যেমন /forget-password) চিনতে না পেরে ৪MD দেয়।
-  baseURL: "${process.env.BACKEND_URL}/api/auth",
+baseURL: process.env.BACKEND_URL || "https://fern-server.onrender.com",
 
   emailAndPassword: {
     enabled: true,
@@ -153,7 +153,7 @@ export const auth = betterAuth({
   },
 
   // 🔗 বিশ্বস্ত সোর্স হিসেবে ফ্রন্টঅ্যান্ড ইউআরএল
-  trustedOrigins: ["http://localhost:3000", "${process.env.BACKEND_URL}"],
+  trustedOrigins: ["http://localhost:3000", "http://localhost:5000"],
 
   user: {
     additionalFields: {
