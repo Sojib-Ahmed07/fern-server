@@ -7,6 +7,8 @@ import productRoutes from "./routes/productRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
 import commentRoutes from "./routes/commentRoutes.js";
 import adminRoutes from "./routes/adminRoutes.js";
+import userRoutes from "./routes/userRoutes.js"
+import dashboardRoutes from "./routes/dashboardRoutes.js"
 
 dotenv.config();
 
@@ -44,6 +46,10 @@ app.use("/api/orders", orderRoutes);
 app.use("/api/comments", commentRoutes);
 //admin
 app.use("/api/admin", adminRoutes)
+//user management
+app.use("/api", userRoutes)
+//dashboard
+app.use("/api", dashboardRoutes)
 
 // server listener
 app.listen(PORT, () => {

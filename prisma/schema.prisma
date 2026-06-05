@@ -105,13 +105,15 @@ model Order {
 }
 
 model OrderItem {
-  id        String  @id @default(uuid())
+  id        String @id @default(uuid())
   orderId   String
   productId String
   quantity  Int
   price     Float
-  order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
-  product   Product @relation(fields: [productId], references: [id])
+
+  // 🎯 ফিক্সড: এখন অর্ডার ডিলিট হলে অথবা প্রোডাক্ট ডিলিট হলে এই টেবিলের অর্ডারের আইটেমগুলোও অটো ডিলিট হয়ে যাবে।
+  order   Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
 }
 
 model Verification {
