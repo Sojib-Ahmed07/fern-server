@@ -3,6 +3,7 @@
     "target": "ES2022",
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
+    "outDir": "./dist",
     "lib": ["esnext"],
     "types": ["node"],
     "allowJs": true,
@@ -16,6 +17,10 @@
       "prisma-client-custom": ["./generated/prisma/client.js"]
     }
   },
-  "include": ["src/**/*", "generated/prisma/**/*"],
-  "exclude": ["node_modules"]
+  "include": ["src/**/*"], // 🎯 ফিক্সড: এখানে শুধু আপনার সোর্স কোড থাকবে
+  "exclude": [
+    "node_modules", 
+    "generated/prisma/**/*", // 🎯 ফিক্সড: প্রিজমার জেনারেটেড ফাইল বিল্ড প্রসেস থেকে বাদ দেওয়া হলো
+    "dist"
+  ]
 }
